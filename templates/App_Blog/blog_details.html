@@ -1,0 +1,432 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}
+    | {{ blog.blog_title }}
+{% endblock %}
+{% block body %}
+    <style>
+        .pp p {
+            font-size: 17px;
+        }
+
+        .pp img {
+            text-align: center !important;
+            width: 300px !important;
+            height: auto !important;
+            transition: width 1s, height 1s;
+        }
+
+        .pp img:hover {
+            width: 500px !important;
+            height: auto !important;
+        }
+
+        h1, h2 {
+            font-family: 'Josefin Sans', sans-serif !important;
+        }
+
+        .follow_us_icons {
+            width: 25px;
+            height: 25px;
+        }
+    </style>
+    <section class="section single-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                    <div class="page-wrapper">
+                        <div class="blog-title-area text-center">
+                            <ol class="breadcrumb hidden-xs-down">
+                                <li class="breadcrumb-item"><a href="{% url 'App_Blog:home' %}">Home</a></li>
+                                <li class="breadcrumb-item active"><a href="#">{{ blog.blog_title }}</a></li>
+                            </ol>
+                            <span class="color-orange">
+                                <a href="#" title="{{ blog.category }}">
+                                    {{ blog.category }}
+                                </a>
+                            </span>
+                            <h3>{{ blog.blog_title }}</h3>
+                            <div class="blog-meta big-meta">
+                                <small><a href="#" title="">{{ blog.publish_date.date }}</a></small>
+                                <small> by
+                                    <a href="#" title="">
+                                        {{ blog.author.first_name }} {{ blog.author.last_name }}
+                                    </a>
+                                </small>
+                                <small><a href="#" title=""><i class="fa fa-eye"></i> {{ blog.post_view }}</a></small>
+                                <small><a href="#Like_and_commentBox" title="">Comments</a></small>
+                            </div><!-- end meta -->
+
+{#                            <div class="post-sharing">#}
+{#                                <ul class="list-inline">#}
+{#                                    <li><a href="#" class="fb-button btn btn-primary">#}
+                                        {#                                        <i class="fa fa-facebook"></i>#}
+{#                                        <span class="down-mobile">Share on Facebook</span></a>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <a href="#" class="tw-button btn btn-primary">#}
+                                            {#                                        <i class="fa fa-twitter"></i>#}
+{#                                            <span class="down-mobile">Share on LinkedIn</span>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <a href="#" class="tw-button btn">#}
+                                            {#                                            <i class="fa fa-google-plus"></i>#}
+{#                                            <span class="down-mobile">Share on LinkedIn</span>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                </ul>#}
+{#                            </div><!-- end post-sharing -->#}
+                        </div><!-- end title -->
+
+                        <div class="single-post-media text-center">
+                            <img src="{{ blog.header_image.url }}" alt="" class="img-fluid" style="height: 500px;">
+                            <a href="https://cutt.ly/kbY2ZVw" target="_blank">
+                                <img src="{% static 'images/pin.png' %}" style="width: 20px; height: 20px">
+                                : {{ blog.location }}
+                            </a>
+                        </div><!-- end media -->
+                        <hr style="height: 5px;">
+                        <div class="blog-content">
+                            <div class="pp">
+                                {{ blog.blog_content|safe|linebreaks }}
+                            </div><!-- end pp -->
+                            <div id="Like_and_commentBox"></div>
+                            <div style="margin-bottom: 30px;">
+                                {% if user.is_authenticated %}
+                                    {% if not liked %}
+                                        <a href="{% url 'App_Blog:like-the-post' pk=blog.pk %}">
+                                            <img style="width: 30px; height: 30px;"
+                                                 src="{% static 'images/red_unlike.png' %}"
+                                                 alt="liked">
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'App_Blog:dislike-the-post' pk=blog.pk %}">
+                                            <img style="width: 30px; height: 30px;"
+                                                 src="{% static 'images/green_like.png' %}" alt="liked">
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                            <div class="custombox clearfix">
+                                <h4 class="small-title">All Comments</h4>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="comments-list">
+                                            {% for comment, days in comments %}
+                                                <div class="media last-child">
+                                                    <a class="media-left" href="#">
+                                                        <img src="{{ comment.author.photo.url }}" alt=""
+                                                             class="rounded-circle">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading user_name">
+                                                            {{ comment.author.first_name }} {{ comment.author.last_name }}
+                                                            <small>{{ days }}</small>
+                                                            <a href="{% url 'App_Blog:delete-comment' pk=comment.id %}"
+                                                               style="float: right;">
+                                                                <img src="{% static 'images/delete.png' %}"
+                                                                     alt="delete" style="width: 24px; height: 24px;">
+                                                            </a>
+                                                        </h4>
+                                                        <p>{{ comment.comment }}</p>
+                                                        <div class="reply">
+                                                            <button class="btn btn-primary" type="button"
+                                                                    data-toggle="collapse"
+                                                                    data-target="#replyBox{{ comment.id }}"
+                                                                    aria-expanded="false"
+                                                                    aria-controls="replyBox{{ comment.id }}">
+                                                                Reply
+                                                            </button>
+                                                            <div class="collapse mt-3 ml-4"
+                                                                 id="replyBox{{ comment.id }}">
+                                                                {% include 'App_Blog/commentBox.html' %}
+                                                                {% for reply in all_replies %}
+                                                                    {% ifequal reply.base_comment comment %}
+                                                                        <div class="row mt-2"
+                                                                             style="background-color: #fde8d4; height: fit-content;">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-12 text-center p-3">
+                                                                                <img src="{{ reply.author.photo.url }}"
+                                                                                     alt="reply author"
+                                                                                     style="width: 75px; height: 75px; border-radius: 50%">
+                                                                            </div>
+                                                                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                                                                <h6>{{ reply.author.first_name }} {{ reply.author.last_name }}
+                                                                                    <br><small>{{ reply.comment_date.date }}</small>
+                                                                                </h6>
+                                                                                <p>
+                                                                                    {{ reply.reply_comment }}
+                                                                                    <br>
+                                                                                    <a href="{% url 'App_Blog:delete-reply' pk=reply.id %}"
+                                                                                       style="float: right;">
+                                                                                        <img src="{% static 'images/delete.png' %}"
+                                                                                             alt="delete"
+                                                                                             style="width: 20px; height: 20px;">
+                                                                                    </a>
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    {% endifequal %}
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div><!-- end col -->
+                                </div><!-- end row -->
+                            </div><!-- end custom-box -->
+                            <br><br>
+                            <!----- Comment Section ----->
+                            <div class="custombox clearfix">
+                                <h4 class="small-title">Leave Your Comment</h4>
+                                <div class="row">
+                                    {% if user.is_authenticated %}
+                                        <div class="col-lg-12">
+                                            <form class="form-wrapper" method="post">
+                                                {% csrf_token %}
+                                                <p class="lead emoji-picker-container">
+                                                <textarea type="textbox" id="id_comment" class="form-control"
+                                                          placeholder="Your comment" onclick="emojiPicker()"
+                                                          name="Comment" data-emojiable="true"
+                                                          data-emoji-input="unicode"></textarea>
+                                                </p>
+                                                <button type="submit" class="btn btn-primary"
+                                                        name="base_comment_submit_button">
+                                                    Submit Comment
+                                                </button>
+                                            </form>
+                                        </div>
+                                    {% else %}
+                                        <div class="col-lg-12">
+                                            <h4>You can comment after
+                                                <a href="{% url 'App_SignIn:signin' %}"
+                                                   style="text-decoration: none !important; color: #843534">
+                                                    Sign In
+                                                </a>
+                                                or
+                                                <a href="{% url 'App_SignIn:signup' %}"
+                                                   style="text-decoration: none !important; color: #843534">
+                                                    sign up
+                                                </a>
+                                            </h4>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <!----- End Comment Section ----->
+                            <br>
+                            <img src="{% static 'images/promotional site background.png' %}" alt=""
+                                 class="img-fluid img-fullwidth">
+                        </div><!-- end content -->
+                        <div class="blog-title-area">
+                            <div class="post-sharing">
+                                <ul class="list-inline">
+                                    <li><a href="#" class="fb-button btn btn-primary">
+                                        <span class="down-mobile">Share on Facebook</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tw-button btn btn-primary">
+                                            <span class="down-mobile">Share on LinkedIn</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tw-button btn">
+                                            <span class="down-mobile">Share on LinkedIn</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div><!-- end post-sharing -->
+                        </div><!-- end title -->
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="banner-spot clearfix">
+                                    <div class="banner-img" style="width: 255px; height: 290px;">
+                                    </div>
+                                    <!-- end banner-img -->
+                                </div><!-- end banner -->
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+
+                        <hr class="invis1">
+                        <hr class="invis1">
+
+                        <div class="custombox authorbox clearfix">
+                            <h4 class="small-title">About author</h4>
+                            <div class="row">
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                    <img src="" alt="" class="img-fluid rounded-circle">
+                                </div><!-- end col -->
+
+                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                    <h4><a href="#">{{ author.first_name }} {{ author.last_name }}</a></h4>
+                                    <div class="topsocial">
+                                        <p>Contact: {{ author.email }}</p>
+                                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i
+                                                class="fa fa-facebook"></i></a>
+                                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i
+                                                class="fa fa-linkedin"></i></a>
+                                    </div><!-- end social -->
+
+                                </div><!-- end col -->
+                            </div><!-- end row -->
+                        </div><!-- end author-box -->
+
+                        <hr class="invis1">
+
+                        <div class="custombox clearfix">
+                            <h4 class="small-title">You may also like</h4>
+                            <div class="row">
+                                {% for sponsored in sponsored_post %}
+                                    <div class="col-lg-6">
+                                        <a href="{% url 'App_Blog:blog-details' slug=sponsored.slug %}">
+                                            <div class="blog-box">
+                                                <div class="post-media">
+                                                    <a href="{% url 'App_Blog:blog-details' slug=sponsored.slug %}"
+                                                       title="">
+                                                        <img src="{{ sponsored.header_image.url }}" alt=""
+                                                             class="img-fluid">
+                                                        <div class="hovereffect">
+                                                            <span class=""></span>
+                                                        </div><!-- end hover -->
+                                                    </a>
+                                                </div><!-- end media -->
+                                                <div class="blog-meta">
+                                                    <h4>
+                                                        <a href="#" title="">
+                                                            {{ sponsored.blog_title }}
+                                                        </a>
+                                                    </h4>
+                                                    <small><a href="#" title="">Trends</a></small>
+                                                    <small>
+                                                        <a href="#" title="">{{ sponsored.publish_date.date }}</a>
+                                                    </small>
+                                                </div><!-- end meta -->
+                                            </div>
+                                        </a>
+                                        <!-- end blog-box -->
+                                    </div><!-- end col -->
+                                {% endfor %}
+                            </div><!-- end row -->
+                        </div><!-- end custom-box -->
+
+                        <hr class="invis1">
+
+                        <hr class="invis1">
+                    </div><!-- end page-wrapper -->
+                </div><!-- end col -->
+
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                    <div class="sidebar">
+                        <div class="widget">
+                            <div class="banner-spot clearfix">
+                                <div class="banner-img" style="width: 255px; height: 290px;">
+                                </div><!-- end banner-img -->
+                            </div><!-- end banner -->
+                        </div><!-- end widget -->
+
+                        <div class="widget">
+                            <h2 class="widget-title">Trend Blogs</h2>
+                            <div class="trend-videos">
+                                {% for trend in trending_post %}
+                                    <div class="blog-box">
+                                        <div class="post-media">
+                                            <a href="#" title="">
+                                                <img src="{{ trend.header_image.url }}" alt="image"
+                                                     class="img-fluid" style="height: 146px; width: 255px;">
+                                                <div class="hovereffect">
+                                                    <span class="videohover"></span>
+                                                </div><!-- end hover -->
+                                            </a>
+                                        </div><!-- end media -->
+                                        <div class="blog-meta">
+                                            <h4>
+                                                <a href="{% url 'App_Blog:blog-details' slug=trend.slug %}" title="">
+                                                    {{ trend.blog_title }}
+                                                </a>
+                                            </h4>
+                                        </div><!-- end meta -->
+                                    </div><!-- end blog-box -->
+                                    <hr class="invis">
+                                {% endfor %}
+                            </div><!-- end videos -->
+                        </div><!-- end widget -->
+
+                        <div class="widget">
+                            <h2 class="widget-title">Popular Posts</h2>
+                            <div class="blog-list-widget">
+                                <div class="list-group">
+                                    {% for sponsored in sponsored_post %}
+                                        <a href="{% url 'App_Blog:blog-details' slug=sponsored.slug %}"
+                                           class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <div class="w-100 justify-content-between">
+                                                <img src="{{ sponsored.header_image.url }}" alt=""
+                                                     class="img-fluid float-left">
+                                                <h5 class="mb-1">{{ sponsored.blog_title }}</h5>
+                                                <small>{{ sponsored.publish_date.date }}</small>
+                                            </div>
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </div><!-- end blog-list -->
+                        </div><!-- end widget -->
+
+                        <div class="widget">
+                            <h2 class="widget-title">Follow Us</h2>
+                            <div class="row text-center">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6" style="margin-bottom: 5px;">
+                                    <a href="https://www.facebook.com/" target="_blank">
+                                        <img src="{% static 'images/Follow_us_facebook.png' %}" alt="Facebook"
+                                             class="follow_us_icons" id="febu">
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6" style="margin-bottom: 5px;">
+                                    <a href="https://www.instagram.com/" target="_blank">
+                                        <img src="{% static 'images/Follow_us_instagram.png' %}" alt="Facebook"
+                                             class="follow_us_icons" id="insu">
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6" style="margin-bottom: 5px;">
+                                    <a href="https://www.linkedin.com" target="_blank">
+                                        <img src="{% static 'images/Follow_us_linkedin.png' %}" alt="Facebook"
+                                             class="follow_us_icons" id="linku">
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+
+                                </div>
+                            </div>
+                        </div><!-- end widget -->
+
+                        <div class="widget">
+                            <div class="banner-spot clearfix">
+                                <div class="banner-img" style="width: 255px; height: 490px;">
+                                </div><!-- end banner-img -->
+                            </div><!-- end banner -->
+                        </div><!-- end widget -->
+                    </div><!-- end sidebar -->
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </section>
+
+    <!----- JavaScript ----->
+    <script src="https://cdn.jsdelivr.net/npm/emoji-button@latest/dist/index.min.js"></script>
+    <script>
+        let input = document.getElementById('id_comment');
+        let picker = new EmojiButton({
+            position: 'right-start'
+        });
+
+        picker.on('emoji', function (emoji) {
+            input.value += emoji;
+        });
+
+        function emojiPicker() {
+            picker.pickerVisible ? picker.hidePicker() : picker.showPicker(input);
+        }
+    </script>
+{% endblock %}
+

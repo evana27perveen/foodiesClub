@@ -1,0 +1,538 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block body %}
+    <link rel="stylesheet" href="{% static 'css/profile_showcase.css' %}">
+    <script src="{% static 'js/profile_showcasingJS.js' %}"></script>
+    <style>
+        h1, h2 {
+            font-family: 'Josefin Sans', sans-serif !important;
+        }
+    </style>
+    <div class="main main-raised">
+        <div class="profile-content">
+            <div class="container">
+                <div class="row">
+                    <div class="profile">
+                        <div class="avatar">
+                            <img src="http://kcpadmissions.in/challenge/gs.jpg" alt="Circle Image"
+                                 class="img-rounded img-responsive img-raised">
+                        </div>
+                        <div class="name">
+                            <h3 class="title">Gurpal Singh</h3>
+                            <h6>Assistant Professor</h6>
+                            <h6>Khalsa College Patiala, Punjab, India</h6>
+                            <button class="btn btn-danger btn-round btn-sm">2019 &nbsp; <i class="material-icons">remove_red_eye</i>Views
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="description text-center">
+                    <h4><b>Success is a Journey Not a Destination</b></h4>
+                </div>
+                <div class="section section-tabs">
+                    <div class="container">
+                        <!--                nav tabs	             -->
+                        <div id="nav-tabs">
+
+                            <div class="row">
+
+
+                                <div class="col-md-3">
+                                    <center><small><h4>My Recent Projects</h4></small></center>
+                                    <ul class="links-vertical">
+                                        <li>
+                                            <a href="#">
+                                                College Website Development
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Online Admission Portal
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Student ID Card Print Software
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Fee Management Software
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Student Portal
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Faculty Portal
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">
+                                                College Android App
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">
+                                                Online Result Portal
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="card1">
+                                        <div class="content content-danger">
+                                            <center><h5 class="category-social">
+                                                <i class="fa fa-comment-o"></i>
+                                                Thought of the Month
+                                            </h5>
+
+                                                <p class="card-description" style="color:#cc3008;">
+                                                    We can't make people better by trying to eliminate their weaknesses,
+                                                    but we can help them perform better by building on their strengths.
+                                                </p>
+                                            </center>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+
+
+                                    <!-- Tabs with icons on Card -->
+                                    <div class="card card-nav-tabs">
+                                        <div style="height:80px;" class="header header-danger">
+                                            <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                                            <div class="nav-tabs-navigation">
+                                                <div class="nav-tabs-wrapper">
+                                                    <ul class="nav nav-tabs" data-tabs="tabs">
+                                                        <li class="active">
+                                                            <a href="#about" data-toggle="tab">
+                                                                <i class="material-icons">face</i>
+                                                                About
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#messages" data-toggle="tab">
+                                                                <i class="material-icons">local_library</i>
+                                                                Study
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#settings" data-toggle="tab">
+                                                                <i class="material-icons">book</i>
+                                                                Others
+                                                            </a>
+
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="#contact" data-toggle="tab">
+                                                                <i class="material-icons">contact_phone</i>
+                                                                Contact
+                                                            </a>
+
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <div class="tab-content text-center">
+                                                <div class="tab-pane active" id="about">
+                                                    <table class="table" width="80px" align="center">
+
+                                                        <tbody>
+
+
+                                                        <tr>
+                                                            <td class="text-right">Father's Name:</td>
+                                                            <td style="text-align:left;"><b>Mr. Kartar Singh</b></td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">Mother's Name:</td>
+                                                            <td style="text-align:left;"><b>Mrs. Sukhwinder kaur</b>
+                                                            </td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">Marital Status:</td>
+                                                            <td style="text-align:left;"><b>Married</b></td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">Workplace:</td>
+                                                            <td style="text-align:left;"><b>G.S.S.D.G.S Khalsa College
+                                                                Patiala, Punjab, India</b></td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">Job Status:</td>
+                                                            <td style="text-align:left;"><b>Assistant Professor </b>
+                                                            </td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">Department:</td>
+                                                            <td style="text-align:left;"><b>PG Department of Computer
+                                                                Sciences </b></td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">Experience:</td>
+                                                            <td style="text-align:left;"><b>Teaching:10 Years<br>Development:4
+                                                                Years</b></td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">Skills:</td>
+                                                            <td style="text-align:left;"><b>HTML,CSS,Bootstrap,PHP,Mysql,Javascript,JQuery</b>
+                                                            </td>
+
+
+                                                        </tr>
+
+                                                        </tbody>
+
+                                                    </table>
+
+
+                                                </div>
+                                                <div class="tab-pane" id="messages">
+                                                    <table class="table" width="80px" align="center">
+
+                                                        <tbody>
+
+
+                                                        <tr>
+                                                            <td class="text-right">10th:</td>
+                                                            <td style="text-align:left;"><b>Punjab School of Education
+                                                                Board (55%),1999</b></td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">12th:</td>
+                                                            <td style="text-align:left;"><b>Punjab School of Education
+                                                                Board, Non-Medical(61%),2001</b></td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">Graduation:</td>
+                                                            <td style="text-align:left;"><b>B.Tech (Infornation
+                                                                Technology) 66%<br> Punjabi University Patiala,2005</b>
+                                                            </td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">Masters:</td>
+                                                            <td style="text-align:left;"><b>M.Tech.( Computer Science
+                                                                and Engineering) 72%<br> Lovely Professional
+                                                                University,2010</b></td>
+
+
+                                                        </tr>
+
+
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+
+
+                                                <div class="tab-pane" id="settings">
+
+                                                    <table class="table" width="80px" align="center">
+
+                                                        <tbody>
+
+
+                                                        <tr>
+                                                            <td class="text-right">Books:</td>
+                                                            <td style="text-align:left;"><b>1.Real Time System,2009,By:
+                                                                Gracious Books<br>2.Matlab Programming,2009,By Gracious
+                                                                Books<br>3.Introduction to Linux,2011,Kalyani
+                                                                Publication</b></td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">Journal Publications</td>
+                                                            <td style="text-align:left;"><b>1 National Journal<br>1
+                                                                International Journal </b></td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">Conference:</td>
+                                                            <td style="text-align:left;"><b>2 National Conference<br>2
+                                                                International Conference </b></td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">Projects:</td>
+                                                            <td style="text-align:left;"><b>Minor Project on Performance
+                                                                Analysis of Real Time Dynamic Scheduling Algorithms
+                                                                Using Cheddar<br>Funded by University Grants Comission
+                                                            </b></td>
+
+
+                                                        </tr>
+
+
+                                                        </tbody>
+
+                                                    </table>
+
+
+                                                </div>
+
+
+                                                <div class="tab-pane" id="contact">
+
+                                                    <table class="table" width="80px" align="center">
+
+                                                        <tbody>
+
+
+                                                        <tr>
+                                                            <td class="text-right">Office Address:</td>
+                                                            <td style="text-align:left;"><b>G.S.S.D.G.S Khalsa College
+                                                                Patiala</b></td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">Residence:</td>
+                                                            <td style="text-align:left;"><b>#388 Ranjit Nagar
+                                                                Patiala</b></td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">Email:</td>
+                                                            <td style="text-align:left;"><b>gsmann0170@gmail.com</b>
+                                                            </td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right">Mobile:</td>
+                                                            <td style="text-align:left;"><b>076965-51531 </b></td>
+
+
+                                                        </tr>
+
+
+                                                        </tbody>
+
+                                                    </table>
+
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Tabs with icons on Card -->
+
+                                </div>
+
+
+                                <div class="col-md-3 pull-right">
+
+                                    <div id="tables">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                            </div>
+                                            <div class="col-md-12 ">
+                                                <center><small><h4>My Colleagues</h4></small></center>
+                                                <div class="table-responsive">
+                                                    <table class="table">
+
+                                                        <tbody>
+
+                                                        <tr>
+                                                            <td class="text-center"><img data-toggle="tooltip"
+                                                                                         title="Online"
+                                                                                         src="http://kcpadmissions.in/challenge/online.png"
+                                                                                         width="10px" height="10px">
+                                                            </td>
+                                                            <td><a href="#"> <img
+                                                                    src="http://kcpadmissions.in/challenge/jas.jpg"
+                                                                    width="32px" height="32px">&nbsp; Jaspreet Singh</a>
+                                                            </td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-center"><img data-toggle="tooltip"
+                                                                                         title="Online"
+                                                                                         src="http://kcpadmissions.in/challenge/online.png"
+                                                                                         width="10px" height="10px">
+                                                            </td>
+                                                            <td><a href="#"> <img
+                                                                    src="http://kcpadmissions.in/challenge/pritpal.jpg"
+                                                                    width="32px" height="32px">&nbsp; Pritpal Singh</a>
+                                                            </td>
+
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center"><img data-toggle="tooltip"
+                                                                                         title="Online"
+                                                                                         src="http://kcpadmissions.in/challenge/online.png"
+                                                                                         width="10px" height="10px">
+                                                            </td>
+                                                            <td><a href="#"> <img
+                                                                    src="http://kcpadmissions.in/challenge/kamal.jpg"
+                                                                    width="32px" height="32px">&nbsp; Kanwalpreet Singh</a>
+                                                            </td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center"><img data-toggle="tooltip"
+                                                                                         title="offline"
+                                                                                         src="http://kcpadmissions.in/challenge/offline.png"
+                                                                                         width="10px" height="10px">
+                                                            </td>
+                                                            <td><a href="#"> <img
+                                                                    src="http://kcpadmissions.in/challenge/deepak.jpg"
+                                                                    width="32px" height="32px">&nbsp; Deepak Singh</a>
+                                                            </td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center"><img data-toggle="tooltip"
+                                                                                         title="Online"
+                                                                                         src="http://kcpadmissions.in/challenge/online.png"
+                                                                                         width="10px" height="10px">
+                                                            </td>
+                                                            <td><a href="#"> <img
+                                                                    src="http://kcpadmissions.in/challenge/rachan.jpg"
+                                                                    width="32px" height="32px">&nbsp; Rachandeep
+                                                                Singh</a></td>
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-center"><img data-toggle="tooltip"
+                                                                                         title="offline"
+                                                                                         src="http://kcpadmissions.in/challenge/offline.png"
+                                                                                         width="10px" height="10px">
+                                                            </td>
+                                                            <td><a href="#"> <img
+                                                                    src="http://kcpadmissions.in/challenge/pritpal.jpg"
+                                                                    width="32px" height="32px">&nbsp; Pritpal Singh</a>
+                                                            </td>
+
+                                                        </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- 	            end nav tabs -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--         pre-footer areas -->
+        <div id="pre-footer-areas">
+            <div class="container">
+                <div class="material-button-anim ">
+                    <ul class="list-inline" id="options">
+                        <li class="option">
+                            <button class="material-button option1" type="button">
+                                <span class="fa fa-phone" aria-hidden="true"></span>
+                            </button>
+                        </li>
+                        <li class="option">
+                            <button class="material-button option2" type="button">
+                                <span class="fa fa-envelope-o" aria-hidden="true"></span>
+                            </button>
+                        </li>
+                        <li class="option">
+                            <button class="material-button option3" type="button">
+                                <span class="fa fa-thumbs-o-up" aria-hidden="true"></span>
+                            </button>
+                        </li>
+                    </ul>
+                    <button class="material-button material-button-toggle" type="button">
+                        <span class="fa fa-user-circle-o" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!--     *********    SIMPLE SOCIAL LINE     *********      -->
+
+            <div class="social-line social-line-white text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="title">Connect With Me <br> On</h4>
+                        </div>
+                        <a href="#pablo" class="btn btn-twitter btn-round">
+                            <i class="fa fa-twitter"></i> Twitter
+                        </a>
+                        <a href="#pablo" class="btn btn-facebook btn-round">
+                            <i class="fa fa-facebook-square"></i> Facebook
+                        </a>
+                        <a href="#pablo" class="btn btn-google btn-round">
+                            <i class="fa fa-google-plus"></i> Google
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--     *********   SIMPLE SOCIAL LINE     *********      -->
+        </div>
+    </div>
+{% endblock %}

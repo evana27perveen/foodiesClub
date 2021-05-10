@@ -1,0 +1,182 @@
+.section {
+  padding: 10px 0;
+}
+.navbar,
+.navbar.navbar-default {
+  background-color: #d32f2f;
+}
+.profile-page .header {
+  height: 100px;
+  background-position: top center;
+  background-color: #d32f2f;
+}
+.wrapper > .header {
+  min-height: 200px;
+  background-size: cover;
+}
+.btn.btn-twitter,
+.navbar .navbar-nav > li > a.btn.btn-twitter {
+  background-color: #55acee;
+  color: #fff;
+  box-shadow: 0 2px 2px 0 rgba(85, 172, 238, 0.14),
+    0 3px 1px -2px rgba(85, 172, 238, 0.2), 0 1px 5px 0 rgba(85, 172, 238, 0.12);
+}
+.btn.btn-facebook,
+.navbar .navbar-nav > li > a.btn.btn-facebook {
+  background-color: #3b5998;
+  color: #fff;
+  box-shadow: 0 2px 2px 0 rgba(59, 89, 152, 0.14),
+    0 3px 1px -2px rgba(59, 89, 152, 0.2), 0 1px 5px 0 rgba(59, 89, 152, 0.12);
+}
+.btn.btn-google,
+.navbar .navbar-nav > li > a.btn.btn-google {
+  background-color: #dd4b39;
+  color: #fff;
+  box-shadow: 0 2px 2px 0 rgba(221, 75, 57, 0.14),
+    0 3px 1px -2px rgba(221, 75, 57, 0.2), 0 1px 5px 0 rgba(221, 75, 57, 0.12);
+}
+a,
+a:hover,
+a:focus {
+  color: #aa2906;
+}
+
+.card1 {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+  border-radius: 3px;
+  color: rgba(0, 0, 0, 0.87);
+  background: #fff;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.material-button-anim {
+  position: relative;
+  padding: 12px 15px 27px;
+  text-align: center;
+  max-width: 320px;
+  margin: 0 auto 20px;
+}
+
+.material-button {
+  position: relative;
+  top: 0;
+  z-index: 1;
+  width: 70px;
+  height: 70px;
+  font-size: 1.5em;
+  color: #fff;
+  background: #e23807;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.275);
+  outline: none;
+}
+.material-button-toggle {
+  z-index: 3;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto;
+}
+.material-button-toggle span {
+  -webkit-transform: none;
+  transform: none;
+  -webkit-transition: -webkit-transform 0.175s cubic-bazier(0.175, 0.67, 0.83, 0.67);
+  transition: transform 0.175s cubic-bazier(0.175, 0.67, 0.83, 0.67);
+}
+.material-button-toggle.open {
+  -webkit-transform: scale(1.3, 1.3);
+  transform: scale(1.3, 1.3);
+  -webkit-animation: toggleBtnAnim 0.175s;
+  animation: toggleBtnAnim 0.175s;
+}
+.material-button-toggle.open span {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transition: -webkit-transform 0.175s
+    cubic-bazier(0.175, 0.67, 0.83, 0.67);
+  transition: transform 0.175s cubic-bazier(0.175, 0.67, 0.83, 0.67);
+}
+
+#options {
+  height: 70px;
+}
+.option {
+  position: relative;
+}
+.option .option1,
+.option .option2,
+.option .option3 {
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  -webkit-transition: all 0.175s;
+  transition: all 0.175s;
+}
+.option .option1 {
+  -webkit-transform: translate3d(90px, 90px, 0) scale(0.8, 0.8);
+  transform: translate3d(90px, 90px, 0) scale(0.8, 0.8);
+}
+.option .option2 {
+  -webkit-transform: translate3d(0, 90px, 0) scale(0.8, 0.8);
+  transform: translate3d(0, 90px, 0) scale(0.8, 0.8);
+}
+.option .option3 {
+  -webkit-transform: translate3d(-90px, 90px, 0) scale(0.8, 0.8);
+  transform: translate3d(-90px, 90px, 0) scale(0.8, 0.8);
+}
+.option.scale-on .option1,
+.option.scale-on .option2,
+.option.scale-on .option3 {
+  filter: blur(0);
+  -webkit-filter: blur(0);
+  -webkit-transform: none;
+  transform: none;
+  -webkit-transition: all 0.175s;
+  transition: all 0.175s;
+}
+.option.scale-on .option2 {
+  -webkit-transform: translateY(-28px) translateZ(0);
+  transform: translateY(-28px) translateZ(0);
+  -webkit-transition: all 0.175s;
+  transition: all 0.175s;
+}
+
+@keyframes toggleBtnAnim {
+  0% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  25% {
+    -webkit-transform: scale(1.4, 1.4);
+    transform: scale(1.4, 1.4);
+  }
+  75% {
+    -webkit-transform: scale(1.2, 1.2);
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    -webkit-transform: scale(1.3, 1.3);
+    transform: scale(1.3, 1.3);
+  }
+}
+@-webkit-keyframes toggleBtnAnim {
+  0% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  25% {
+    -webkit-transform: scale(1.4, 1.4);
+    transform: scale(1.4, 1.4);
+  }
+  75% {
+    -webkit-transform: scale(1.2, 1.2);
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    -webkit-transform: scale(1.3, 1.3);
+    transform: scale(1.3, 1.3);
+  }
+}

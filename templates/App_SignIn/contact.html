@@ -1,0 +1,49 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block title %}
+    Contact with Moderator
+{% endblock %}
+{% block body %}
+    <style>
+        form legend {
+            font-size: 30px;
+            font-family: 'Josefin Sans', sans-serif !important;
+            text-align: center;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Josefin Sans', sans-serif !important;
+        }
+    </style>
+    <div class="container">
+        <div class="container">
+            <div style="text-align: center;">
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="alert-success">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="row" style="margin-top: 50px; padding: 50px;">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <form method="post">
+                        {% csrf_token %}
+                        <legend>Contact us</legend>
+                        <hr style="width: 50%; border: 1px solid #1d1e1f; margin-bottom: 30px;">
+                        <fieldset class="form-group">
+                            {{ form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn">Send</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12" style="margin-top: 80px; text-align: center">
+                    <img src="{{ user.photo.url }}" alt="User Photo"
+                         style="width: 200px; height: 200px;">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

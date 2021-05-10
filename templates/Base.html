@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <!-- Basic -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{% static 'images/logo-2.png' %}" type="image/x-icon"/>
+    <!-- Design fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    {#    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">#}
+    {#    <!-- FontAwesome Icons core CSS -->#}
+    {#    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">#}
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!-- Responsive styles for this template -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <!-- Colors for this template -->
+    <link href="{% static 'css/colors.css' %}" rel="stylesheet">
+    <!-- Version Tech CSS for this template -->
+    <link href="{% static 'css/version/tech.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;1,300&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <title>Foodies Club - Share Foods & Recipes
+        {% block title %}
+        {% endblock %}
+    </title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            height: fit-content;
+        }
+
+        .navbar {
+            background: linear-gradient(45deg, rgba(139, 0, 0, 0.51), darkslateblue) !important;
+            -webkit-box-shadow: 0 0 10px #1d1e1f;
+            box-shadow: 0 0 10px #1d1e1f;
+            border-radius: 5px;
+        }
+
+        .navbar-light .navbar-toggler-icon {
+            background-image: url({% static 'images/dropdown_collaps.png' %}) !important;
+        }
+
+        .dropdown-menu {
+            background: linear-gradient(to right, rgb(177, 87, 87), darkslateblue) !important;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 10px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: red;
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b30000;
+        }
+
+        /* Goto Top */
+        #gotoTop {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        #gotoTop:hover {
+            background-color: #d7d7d7;
+        }
+
+        #suggestionModal-content-id {
+            background: #ffb900 !important;
+        }
+
+        #Let-s-go {
+            padding: 20px !important;
+            border: 1px solid #000000;
+            border-radius: 30px;
+            font-weight: 500 !important;
+            background: linear-gradient(45deg, transparent, transparent) !important;
+            -webkit-box-shadow: 0 0 10px #000000;
+            box-shadow: 0 0 10px #000000;
+            width: 150px !important;
+        }
+
+        #Let-s-go:hover {
+            background: transparent !important;
+            border: 2px solid #ffffff;
+            color: #000000 !important;
+        }
+    </style>
+</head>
+<body>
+<!----- Timer Modal ----->
+<!-- Button trigger modal -->
+<button type="button" style="display: none;" id="suggest-to-login-button" class="btn btn-primary" data-toggle="modal"
+        data-target="#suggestionSignUpModal">
+</button>
+
+<!-- Modal -->
+{% if user.is_authenticated %}
+{% else %}
+    <div class="modal fade" id="suggestionSignUpModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id="suggestionModal-content-id">
+                <div class="modal-header">
+                    <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h1 style="font-family: 'El Messiri', sans-serif !important; font-size: 50px; margin-bottom: 100px;">
+                        Do you have good recipes or <p></p> food suggestions?
+                    </h1>
+                    <p style="font-weight: 600;">Read food reviews and share new recipes, food's test, restaurant
+                        review, on this site
+                        <a href="{% url 'App_Blog:home' %}">"Foodies Club"</a>. Welcome to all.
+                        <a href="#">Learn more...</a>
+                    </p>
+                    <a href="{% url 'App_SignIn:signin' %}" class="btn btn-outline-dark btn-lg" type="button"
+                       id="Let-s-go">
+                        Let's Go
+                    </a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">X</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+<!----- End Modal ----->
+
+<button onclick="topFunction()" id="gotoTop" title="Go to top">
+    <img src="{% static 'images/gotoTop.png' %}" alt="Go To Top" style="width: 30px; height: 30px">
+    {#    <i class="fa fa-chevron-circle-up"></i>#}
+</button>
+<div class="container">
+    <div class="container">
+        <ul class="nav justify-content-end mt-2 mb-2">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">
+                    <img src="{% static 'images/facebook.png' %}" alt="Facebook" style="width: 25px; height: 25px;">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <img src="{% static 'images/youtube.png' %}" alt="YouTube" style="width: 25px; height: 25px;">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <img src="{% static 'images/linkedin.png' %}" alt="LinkedIn" style="width: 25px; height: 25px;">
+                </a>
+            </li>
+        </ul>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mt-1" id="main-navbar">
+            <a class="navbar-brand" href="{% url 'App_Blog:home' %}" style="color: #ffffff!important;">FoodieClub<b> . .
+                .</b></a>
+            {#            <a class="navbar-brand" href="{% url 'App_Blog:home' %}" style="color: #ffffff!important;">#}
+            {#                <img src="{% static 'images/' %}" alt="">#}
+            {#            </a>#}
+            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'App_Blog:home' %}">Home</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'App_Blog:blog-writing' %}">Blog writing</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:blogWritingAlert();">Blog writing</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'App_Blog:about-us' %}">About</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'App_SignIn:contact-us' %}">Contact-Us</a>
+                        </li>
+                        <!----- DropDown ----->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown" href="#" id="navbarDropdown"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-angle-double-down" style="font-size: 16px;"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item text-white"
+                                   href="{% url 'App_SignIn:profile-view' %}">Profile</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-white" href="{% url 'App_SignIn:update-profile' %}">Settings</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-white" href="{% url 'App_SignIn:signout' %}">Sign out</a>
+                            </div>
+                        </li>
+                        <!----- End DropDown ----->
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'App_SignIn:signin' %}">signin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'App_SignIn:signup' %}">Sign up</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+</div>
+
+{% block body %}
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+        crossorigin="anonymous"></script>
+<script src="{% static 'js/all.js' %}"></script>
+<script>
+    //Get the button
+    let mybutton = document.getElementById("gotoTop");
+    let gotoBlog = document.getElementById('gotoBlogs');
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+    // Skip advertisement button clicked
+    let srh = screen.height;
+    let srw = screen.width;
+    let gotoBlogs = document.getElementById('gotoBlogs');
+    let gotoSponsored = document.getElementById('gotoSponsoredBlogs');
+    let gotoTrends = document.getElementById('gotoTrendingBlogs');
+    if (srw < 1366) {
+        gotoBlogs.innerText = 'skip ad.';
+        gotoSponsored.style.display = 'block';
+        gotoTrends.style.display = 'block';
+        {#gotoBlogs.className = 'text-center float-right mt-2 mr-2';#}
+        <!----- Skip Ad. JS style ----->
+        gotoBlogs.style.padding = '5px';
+        gotoBlogs.style.borderRadius = '0px';
+        <!----- Sponsored JS style ----->
+        gotoSponsored.style.padding = '5px';
+        <!----- Trending JS style ----->
+        gotoTrends.style.padding = '5px';
+    }
+
+    function skipAdvertisement() {
+        if (srh >= 760) {
+            window.scrollBy(0, 600);
+        }
+        if (srw < 1366) {
+            document.getElementById('gotoBlogs').innerText = 'skip ad.';
+            window.scrollBy(0, 1375);
+        }
+    }
+</script>
+<script type="text/javascript">
+    function blogWritingAlert() {
+        let txt = "YOU HAVE TO SIGNUP / LOGIN TO WRITE BLOG";
+        let answer = confirm(txt);
+        if (answer) {
+            window.location = "{% url 'App_SignIn:signin' %}";
+        }
+    }
+
+    setTimeout(() => {
+        document.getElementById('suggest-to-login-button').click();
+    }, 30000);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block body %}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;1,300&display=swap"
+          rel="stylesheet">
+    <style>
+        .form-div {
+            background-color: #ffffc1;
+            padding: 30px;
+            -webkit-box-shadow: 0 0 10px #000;
+            box-shadow: 0 0 10px #000;
+            border-radius: 5px;
+        }
+
+        form label {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: bold;
+        }
+    </style>
+    <div class="container" style="margin-top: 50px;">
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+
+        {% endif %}
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 form-div">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <legend
+                            style="font-family: 'Josefin Sans', sans-serif; font-weight: bold; font-size: 35px;
+                            text-align: center">
+                        Blog Writing
+                    </legend>
+                    <hr style="width: 40%; text-align: center; border: 0.25px solid #000000">
+                    <fieldset class="form-group">
+                        {{ form.media }}
+                        {{ form|crispy }}
+                        <small>Please try to upload *jpg formatted picture (অনুগ্রহপূর্বক *jpg photo আপলোড করুন)</small>
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-success" id="blog_posting_button">Post</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.7.1/tinymce.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.6.2/standard-all/ckeditor.js"></script>
+
+    <script type="text/javascript">
+        window.parent.CKEDITOR.tools.callFunction('0', '" + picture address + "', '')
+    </script>
+    <script type="text/javascript">
+        let category = document.getElementById('id_category');
+        let food_origin = document.getElementById('div_id_food_origin');
+        food_origin.style.display = 'none';
+        category.onchange = function () {
+            if (category.value === '2' || category.value === '3') {
+                console.log(category.value);
+                food_origin.style.display = 'block';
+            } else {
+                food_origin.style.display = 'none';
+            }
+        }
+    </script>
+{% endblock %}

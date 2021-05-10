@@ -1,0 +1,149 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block title %}
+    {{ user.first_name }} {{ user.last_name }}
+{% endblock %}
+{% block body %}
+    <style>
+        .breadcrumb {
+            background-color: #E9ECEF;
+            border-radius: 5px;
+            list-style: outside none none;
+            margin: 0 15px;
+            text-align: right;
+            padding: 0 0 0 10px;
+        }
+
+        .breadcrumb li a {
+            color: #a3a5a8 !important;
+        }
+
+        .profile-div {
+            margin-top: 30px !important;
+        }
+
+        .profile_info {
+            margin: 50px 0 !important;
+        }
+
+        .profile_info .col-lg-5 img {
+            height: 400px;
+            width: 300px;
+        }
+
+        .Mail-phone-etc {
+            margin: 70px 0 !important;
+        }
+
+        .email {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .email a {
+            color: #000000 !important;
+            text-decoration: none;
+        }
+
+        .email a:hover {
+            color: #319c92 !important;
+            text-decoration: none;
+        }
+
+        .email:hover {
+            color: #319c92 !important;
+            text-decoration: none;
+        }
+
+        {#<!---- Phone ----->#}
+        .phone {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .phone a {
+            color: #000000 !important;
+            text-decoration: none;
+        }
+
+        .phone a:hover {
+            color: #319c92 !important;
+            text-decoration: none;
+        }
+
+        .phone:hover {
+            color: #319c92 !important;
+            text-decoration: none;
+        }
+
+        #article-container {
+            margin-top: 100px !important;
+            margin-bottom: 50px;
+        }
+
+        #article-container .row .col-md-3 {
+            padding: 30px;
+        }
+
+        #article-container .row .col-md-3 img {
+            width: 100%;
+            height: 200px;
+        }
+    </style>
+    <div class="container profile-div">
+        <ol class="breadcrumb hidden-xs-down">
+            <li class="breadcrumb-item"><a href="{% url 'App_Blog:home' %}">Home</a></li>
+            <li class="breadcrumb-item active"><a href="#">Profile</a></li>
+        </ol>
+        <div class="row profile_info">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-6">
+                <h3>{{ user.first_name }} {{ user.last_name }}
+                    <small style="color: #a3a5a8; font-size: 18px;">(@{{ user.username }})</small>
+                </h3>
+                <div class="Mail-phone-etc">
+                    <p class="email"><a href="#">Email:</a> {{ user.email }}</p>
+                    <p class="phone"><a href="#">Phone:</a> {{ user.phone_number }}</p>
+                    <p class="phone"><a href="#">Address:</a> {{ user.Address }}</p>
+                </div>
+                <p class="phone">
+                    <a href="{{ facebook }}" target="_blank">
+                        <img src="{% static 'images/facebook(1).png' %}" alt="Facebook" width="25" height="25">
+                    </a> &nbsp; &nbsp;
+                    <a href="{{ user.email }}" target="_blank">
+                        <img src="{% static 'images/gmail.png' %}" alt="Gmail" width="25" height="25">
+                    </a> &nbsp; &nbsp;
+                    <a href="{{ user.phone_number }}" target="_blank">
+                        <img src="{% static 'images/telephone.png' %}" alt="Telephone" width="25" height="25">
+                    </a> &nbsp; &nbsp;
+                    <a href="{{ linkedIn }}" target="_blank">
+                        <img src="{% static 'images/linkedin.png' %}" alt="LinkedIn" width="25" height="25">
+                    </a>
+                </p>
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-4">
+                <img src="{{ user.photo.url }}" alt="My Photo" style="width: 350px; height: 380px;">
+            </div>
+        </div>
+    </div>
+    <div class="container" id="article-container">
+        <div class="row">
+            {% for article in articles %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="{{ article.header_image.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.blog_title }}</h5>
+                            <a href="{% url 'App_Blog:blog-details' slug=article.slug %}" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

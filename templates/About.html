@@ -1,0 +1,172 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}
+    | About Page
+{% endblock %}
+{% block body %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+
+        html {
+            box-sizing: border-box;
+        }
+
+        h1, h2 {
+            font-family: 'Josefin Sans', sans-serif !important;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        .column {
+            float: left;
+            width: 33.3%;
+            margin-bottom: 16px;
+            padding: 0 8px;
+        }
+
+        .about-section {
+            margin-bottom: 75px !important;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            margin: 8px;
+        }
+
+        .about-section {
+            padding: 50px;
+            text-align: center;
+            background-color: #474e5d;
+            color: #ffffff !important;
+        }
+
+        .container {
+            padding: 0 16px;
+        }
+
+        .container::after, .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .title {
+            color: grey;
+        }
+
+        .button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 0 !important;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        @media screen and (max-width: 650px) {
+            .column {
+                width: 100%;
+                display: block;
+            }
+        }
+
+        .card {
+            height: 690px !important;
+        }
+
+        .card img {
+            width: 100% !important;
+            height: 380px !important;
+        }
+
+        .card button {
+            margin-top: auto !important;
+        }
+    </style>
+    <div class="container mt-5">
+        <div class="about-section">
+            <h1 style="color: #ffffff">About Us</h1>
+            <p style="color: #ffffff">Food is the necessity. We are sharing foods and food recipes in our page.</p>
+            <p style="color: #ffffff">
+                We are food lover. We love to eat different foods. We believe, food culture is a big communication
+                medium
+                that can call people closer.
+                We have a plan to make the "No Empty Stomach" world.
+            </p>
+        </div>
+
+        <h2 style="text-align:center">Our Team</h2>
+        <div class="row">
+            <div class="column">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="{% static 'images/us/Maloy.jpg' %}" alt="Maloy Baroi (Founder)" style="width:100%">
+                        <div class="container">
+                            <h2>Maloy Baroi</h2>
+                            <p class="title">CEO & Founder</p>
+                            <p>
+                                Working hard is not the way of achieving success, smart work is the way of achieving
+                                success
+                            </p>
+                            <p>maloy.virat@gmail.com</p>
+                        </div>
+                    </div>
+                    <p>
+                        <a class="button btn" href="#">Contact</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="{% static 'images/us/Eva(1).jpg' %}" alt="Evana Perveen Eva (Co-Founder)" style="width:100%">
+                        <div class="container">
+                            <h2>Evana Perveen Eva</h2>
+                            <p class="title">Board of Director & Co-founder</p>
+                            <p>Life is not so easy. No one will give you anything without any reason.</p>
+                            <p>evana27perveen@gmail.com</p>
+                        </div>
+                    </div>
+                    <p>
+                        <a class="button btn" href="https://cutt.ly/wbPJVkO" target="_blank">Contact</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="{% static 'images/us/0.jpg' %}" alt="Moderator" style="width:100%">
+                        <div class="container">
+                            <h2></h2>
+                            <p class="title">Moderator</p>
+                            <p>Expression depends on your writing, people can change his acting but not the written.</p>
+                            <p>example@gmail.com</p>
+                        </div>
+                    </div>
+                    <p>
+                        <a class="button btn" href="#">Contact</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
+{% endblock %}
+
