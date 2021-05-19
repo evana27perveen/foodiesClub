@@ -21,7 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('FOODIES-CLUB-ONLY-MAIN-ADMIN-ACCESS/Maloy-Baroi-Virat/', admin.site.urls),
+    path('FOODIESKLUB-ONLY-Admin-Access/', admin.site.urls),
     path('accounts/', include('App_SignIn.urls')),
     path('', include('App_Blog.urls')),
     path('ckeditor-uploader/', include('ckeditor_uploader.urls')),

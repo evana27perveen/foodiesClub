@@ -1,0 +1,62 @@
+<style>
+    .btn-outline-warning {
+        padding: 6px;
+        border: 1.5px solid #ffb900;
+    }
+</style>
+<div class="blog-top clearfix">
+    <h4 class="pull-left">All Posts <a href="#"><i class="fa fa-rss"></i></a></h4>
+    <div>
+        <!-- Button trigger modal -->
+        <p style="text-align: right">
+            {% load static %}
+            <a class="btn-outline-warning text-dark" data-toggle="collapse" href="#languageCollaps"
+               role="button" aria-expanded="false" aria-controls="languageCollaps">
+                <img src="{% static 'images/filter (1).png' %}" alt="Filter icon" style="height: 20px; width: 20px">
+                FILTERS
+            </a> &nbsp; &nbsp;
+        </p>
+        <div class="collapse" id="languageCollaps" style="text-align: left">
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h4>Language</h4>
+                        <hr>
+                        <a href="{% url 'App_Blog:filtered-blog' language='All' %}" class="text-dark">All</a> <br>
+                        {% for language in languages %}
+                            <a href="{% url 'App_Blog:filtered-blog' language=language %}"
+                               class="text-dark">
+                                {{ language }}
+                            </a>
+                            <br>
+                        {% endfor %}
+                    </div>
+                    <div class="col-lg-3">
+                        <h4>Category</h4>
+                        <hr>
+                        {% for cat in category %}
+                            <a href="{% url 'App_Blog:blogs-by-categories' this_category=cat %}"
+                               class="text-dark">
+                                {{ cat }}
+                            </a>
+                            <br>
+                        {% endfor %}
+                    </div>
+                    <div class="col-lg-3">
+                        <h4>Region</h4>
+                        <hr>
+                        {% for reg in Region %}
+                            <a href="{% url 'App_Blog:origin-wise-blogs' this_origin=reg %}"
+                               class="text-dark">
+                                {{ reg }}
+                            </a>
+                            <br>
+                        {% endfor %}
+                    </div>
+
+                    <div class="col-lg-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- end blog-top -->

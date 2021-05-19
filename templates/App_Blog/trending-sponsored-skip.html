@@ -1,0 +1,63 @@
+{% load static %}
+<style>
+    #extra-ordinary {
+        text-align: center !important;
+    }
+
+    .extra-ordinary-btn {
+        border: 2px solid #ffb900;
+        width: fit-content;
+    }
+
+    #logo {
+        font-family: 'Dancing Script', cursive !important;
+        font-weight: 700;
+        font-size: 80px;
+    }
+
+    #logo b {
+        color: #f4952f;
+    }
+
+    #logo:hover {
+        color: #000000 !important;
+    }
+</style>
+<div class="container">
+    <div class="row" style="margin: 50px 0 0 0;">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-md-12"></div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-md-12">
+            <a href="{% url 'App_Blog:home' %}" id="logo">
+                Foodies<b>Klub</b>
+            </a>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-md-12"></div>
+    </div>
+    <div class="row mt-5" id="extra-ordinary">
+        <div class="col-4">
+            <a id="gotoBlogs" class="extra-ordinary-btn text-center mt-2 mr-2 p-2" href="#Post-starts">
+                Skip advertisement
+            </a>
+        </div>
+        <div class="col-4">
+            <a id="gotoTrendingBlogs" class=" extra-ordinary-btn mt-2 ml-2 text-center" href="#trending-div"
+               style="display: none; padding: 2px;">
+                Trending
+            </a>
+        </div>
+        <div class="col-4">
+            <a id="gotoSponsoredBlogs" class="extra-ordinary-btn mt-2 ml-2 text-center" href="#sponsored-div"
+               style="display: none; padding: 2px;">
+                Popular
+            </a>
+            <h2 id="follow_us_icons">
+                <img src="{% static 'images/social media icons/facebook.png' %}" alt="facebook"
+                     style="height: 17px; width: 17px;">&nbsp;
+                <img src="{% static 'images/social media icons/instagram.png' %}" alt="instagram"
+                     style="height: 17px; width: 17px;">&nbsp;&nbsp;
+                <img src="{% static 'images/social media icons/linkedin.png' %}" alt="linkedin"
+                     style="height: 17px; width: 17px;">
+            </h2>
+        </div>
+    </div>
+</div>

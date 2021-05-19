@@ -1,0 +1,220 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block head %}
+    <meta name="title" content="Foodies Club - Share Foods & Recipes | Language Filtered">
+    <meta name="description"
+          content="Food roams from region to region. Foods establish cross-connection among different food cultures.FoodiesKlub lists out recipes,restaurants,food taste.">
+    <meta name="keywords"
+          content="বিদেশি খাবারের নাম,চট্টগ্রামের ঐতিহ্যবাহী খাবারের তালিকা,বাঙালি খাবারের নাম,বাঙালি খাবারের তালিকা,বিভিন্ন খাবারের নাম,বাংলাদেশের ঐতিহ্যবাহী খাবার,বাংলাদেশের খাবারের তালিকা,চট্টগ্রামের ঐতিহ্যবাহী খাবারের তালিকা,বিভিন্ন চাইনিজ খাবারের নাম,ই দিয়ে খাবারের নাম,বিভিন্ন খাবারের নাম,বাংলাদেশের আঞ্চলিক খাবার,রেস্টুরেন্টের খাবারের তালিকা,বাংলাদেশের জাতীয় খাবার কি,বাঙালির খাবার,রেস্টুরেন্ট এর খাবার তালিকা,খাবার দোকানের সুন্দর নামের তালিকা,বিভিন্ন রেস্টুরেন্টের নাম,রেস্টুরেন্টের নামের তালিকা,সুন্দর কিছু রেস্টুরেন্টের নাম,রেস্টুরেন্ট এর সুন্দর নাম,food near me,restaurant wholesale near me,restaurant suppliers near me,Chinese restaurant near me,Indian restaurant near me,Thai restaurant near me,bbq near me,new mexican restaurant near me,caribbean restaurant near me,olive garden,olive garden near me,jamaica restaurant near me,brunch near me,99 restaurant near me,restaurants in dhaka bangladesh,unique restaurant in dhaka,best restaurants near me,new restaurants near me,restaurant near me,food near me,restaurant wholesale near me,restaurant suppliers near me,Chinese restaurant near me,Indian restaurant near me,Thai restaurant near me,bbq near me,new mexican restaurant near me,caribbean restaurant near me,olive garden,olive garden near me,jamaica restaurant near me,brunch near me,99 restaurant near me,restaurants in dhaka bangladesh,restaurants in India,भारतीय खाना रेसिपी,भारतीय खाना बनाने की विधि,भारतीय व्यंजन बनाने की विधि,राज्य और उनके प्रमुख भोजन,खाने का मेनू लिस्ट,भारतीय भोजन थाली,दिल्ली का खाना,दिल्ली के मशहूर खाना,दिल्ली का रहन-सहन,दिल्ली का फेमस खाना,दिल्ली फूड,दिल्ली का खान-पान,बिहार की प्रसिद्ध मिठाई,भोजपुरी क्षेत्र के भोजन,बिहार का रहन-सहन,पंजाब का मुख्य भोजन क्या है,बिहार का फेमस खाना क्या है,बिहार की भाषा,कोलकाता का पहनावा,बंगाल का मुख्य भोजन क्या है,कोलकाता का रहन-सहन,पश्चिम बंगाल का खाना,तमिलनाडु का मुख्य भोजन क्या है,पश्चिम बंगाल का रहन-सहन,">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="revisit-after" content="7 days">
+    <meta name="author" content="Maloy Baroi, Evana Perveen Eva">
+{% endblock %}
+{% block title %}
+    |  Home Page
+{% endblock %}
+{% block body %}
+    <!-- Site Icons -->
+
+    <!-- Design fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <!-- Responsive styles for this template -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+    <!-- Colors for this template -->
+    <link href="{% static 'css/colors.css' %}" rel="stylesheet">
+
+    <!-- Version Tech CSS for this template -->
+    <link href="{% static 'css/version/tech.css' %}" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .follow_us_icons {
+            width: 25px;
+            height: 25px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Josefin Sans', sans-serif !important;
+        }
+    </style>
+    {% include 'App_Blog/trending-sponsored-skip.html' %}
+    <div id="wrapper">
+        <section class="section first-section">
+            {% include 'App_Blog/advertisement.html' %}
+        </section>
+
+        <section class="section" id="Post-starts">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-12 col-sm-12">
+                        <div class="page-wrapper">
+                            {% include 'App_Blog/filter.html' %}
+                            <!-- end blog-top -->
+                            <div class="blog-list clearfix">
+                                {% if blog_has %}
+                                    {% for blog, cut_content in blogs %}
+                                        <div class="blog-box row">
+                                            <div class="col-md-4">
+                                                <div class="post-media">
+                                                    <a href="{% url 'App_Blog:blog-details' slug=blog.slug %}" title="">
+                                                        <img src="{{ blog.header_image.url }}" alt="Main photo"
+                                                             class="img-fluid"
+                                                             style="width: 600px!important; height: 280px;!important;">
+                                                        <div class="hovereffect"></div>
+                                                    </a>
+                                                </div><!-- end media -->
+                                            </div><!-- end col -->
+
+                                            <div class="blog-meta big-meta col-md-8">
+                                                <h4>
+                                                    <a href="{% url 'App_Blog:blog-details' slug=blog.slug %}"
+                                                       title="Slug">{{ blog.blog_title }}</a>
+                                                </h4>
+                                                <p>{{ cut_content|safe|linebreaks }}</p><br>
+                                                <small class="firstsmall"><br><a class="bg-orange" href="#"
+                                                                                 title="">{{ blog.category }}</a></small>
+                                                <small><a href="#" title="">{{ blog.publish_date }}</a></small>
+                                                <small>
+                                                    <a href="#" title="">by
+                                                        <b>{{ blog.author.first_name }} {{ blog.author.last_name }}</b>
+                                                    </a>
+                                                </small>
+                                                <small>
+                                                    <a href="#" title=""><i class="fa fa-eye"></i>
+                                                        {{ blog.post_view }}
+                                                    </a>
+                                                </small>
+                                                <hr>
+                                            </div><!-- end meta -->
+                                        </div><!-- end blog-box -->
+                                        <hr class="invis">
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="blog-box row">
+                                        <div class="col-md-4">
+                                            <div class="post-media">
+                                                <a href="#" title="">
+                                                    <img src="{% static 'images/no blog.jfif' %}" alt="Main photo"
+                                                         class="img-fluid"
+                                                         style="width: 600px!important; height: 280px;!important;">
+                                                    <div class="hovereffect"></div>
+                                                </a>
+                                            </div><!-- end media -->
+                                        </div><!-- end col -->
+
+                                        <div class="blog-meta big-meta col-md-8">
+                                            <h4>
+                                                <a href="#" title="No Blogs">No Blog</a>
+                                            </h4>
+                                            <small class="firstsmall"><br>
+                                                <a class="bg-orange" href="{% url 'App_Blog:blog-writing' %}"
+                                                   title="Write Blog">
+                                                    You can Write a blog here.
+                                                </a>
+                                            </small>
+                                        </div><!-- end meta -->
+                                    </div><!-- end blog-box -->
+                                {% endif %}
+                            </div><!-- end blog-list -->
+                        </div><!-- end page-wrapper -->
+                    </div>
+
+                    <hr class="invis">
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        {% include 'App_Blog/sidebar.html' %}
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+
+        {#        <footer class="footer">#}
+        {#            <div class="container">#}
+        {#                <div class="row">#}
+        {#                    <div class="col-lg-7">#}
+        {#                        <div class="widget">#}
+        {#                            <div class="footer-text text-left">#}
+        {#                                <a href="index.html"><img src="images/version/tech-footer-logo.png" alt=""#}
+        {#                                                          class="img-fluid"></a>#}
+        {#                                <p>Tech Blog is a technology blog, we sharing marketing, news and gadget articles.</p>#}
+        {#                                <div class="social">#}
+        {#                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i#}
+        {#                                            class="fa fa-facebook"></i></a>#}
+        {#                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i#}
+        {#                                            class="fa fa-twitter"></i></a>#}
+        {#                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Instagram"><i#}
+        {#                                            class="fa fa-instagram"></i></a>#}
+        {#                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Google Plus"><i#}
+        {#                                            class="fa fa-google-plus"></i></a>#}
+        {#                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i#}
+        {#                                            class="fa fa-pinterest"></i></a>#}
+        {#                                </div>#}
+        {##}
+        {#                                <hr class="invis">#}
+        {##}
+        {#                                <div class="newsletter-widget text-left">#}
+        {#                                    <form class="form-inline">#}
+        {#                                        <input type="text" class="form-control" placeholder="Enter your email address">#}
+        {#                                        <button type="submit" class="btn btn-primary">SUBMIT</button>#}
+        {#                                    </form>#}
+        {#                                </div><!-- end newsletter -->#}
+        {#                            </div><!-- end footer-text -->#}
+        {#                        </div><!-- end widget -->#}
+        {#                    </div><!-- end col -->#}
+        {##}
+        {#                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">#}
+        {#                        <div class="widget">#}
+        {#                            <h2 class="widget-title">Popular Categories</h2>#}
+        {#                            <div class="link-widget">#}
+        {#                                <ul>#}
+        {#                                    <li><a href="#">Marketing <span>(21)</span></a></li>#}
+        {#                                    <li><a href="#">SEO Service <span>(15)</span></a></li>#}
+        {#                                    <li><a href="#">Digital Agency <span>(31)</span></a></li>#}
+        {#                                    <li><a href="#">Make Money <span>(22)</span></a></li>#}
+        {#                                    <li><a href="#">Blogging <span>(66)</span></a></li>#}
+        {#                                </ul>#}
+        {#                            </div><!-- end link-widget -->#}
+        {#                        </div><!-- end widget -->#}
+        {#                    </div><!-- end col -->#}
+        {##}
+        {#                    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">#}
+        {#                        <div class="widget">#}
+        {#                            <h2 class="widget-title">Copyrights</h2>#}
+        {#                            <div class="link-widget">#}
+        {#                                <ul>#}
+        {#                                    <li><a href="#">About us</a></li>#}
+        {#                                    <li><a href="#">Advertising</a></li>#}
+        {#                                    <li><a href="#">Write for us</a></li>#}
+        {#                                    <li><a href="#">Trademark</a></li>#}
+        {#                                    <li><a href="#">License & Help</a></li>#}
+        {#                                </ul>#}
+        {#                            </div><!-- end link-widget -->#}
+        {#                        </div><!-- end widget -->#}
+        {#                    </div><!-- end col -->#}
+        {#                </div>#}
+        {##}
+        {#                <div class="row">#}
+        {#                    <div class="col-md-12 text-center">#}
+        {#                        <br>#}
+        {#                        <div class="copyright">&copy; Tech Blog. Design: <a href="http://html.design">HTML Design</a>.#}
+        {#                        </div>#}
+        {#                    </div>#}
+        {#                </div>#}
+        {#            </div><!-- end container -->#}
+        {#        </footer><!-- end footer -->#}
+
+        <div class="dmtop">Scroll to Top</div>
+
+    </div><!-- end wrapper -->
+
+    <!-- Core JavaScript
+    ================================================== -->
+
+{% endblock %}

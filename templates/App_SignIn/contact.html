@@ -6,6 +6,15 @@
 {% endblock %}
 {% block body %}
     <style>
+        .form-div {
+            border: 2px dotted #ffb900;
+            border-radius: 10px;
+            padding: 20px;
+            background: rgba(220, 220, 220, 0.7);
+            -webkit-box-shadow: 0 0 30px #ffb900;
+            box-shadow: 0 0 30px #ffb900;
+        }
+
         form legend {
             font-size: 30px;
             font-family: 'Josefin Sans', sans-serif !important;
@@ -26,7 +35,8 @@
                 {% endif %}
             </div>
             <div class="row" style="margin-top: 50px; padding: 50px;">
-                <div class="col-lg-8 col-md-8 col-sm-12">
+                <div class="col-lg-2 col-md-2"></div>
+                <div class="col-lg-8 col-md-8 col-sm-12 form-div">
                     <form method="post">
                         {% csrf_token %}
                         <legend>Contact us</legend>
@@ -39,9 +49,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12" style="margin-top: 80px; text-align: center">
-                    <img src="{{ user.photo.url }}" alt="User Photo"
-                         style="width: 200px; height: 200px;">
+                <div class="col-lg-2 col-md-2">
                 </div>
             </div>
         </div>

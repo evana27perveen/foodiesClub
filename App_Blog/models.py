@@ -1,4 +1,6 @@
 from django.db import models
+from image_optimizer.fields import OptimizedImageField
+
 from App_SignIn.models import CustomUser
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -28,7 +30,8 @@ class Article(models.Model):
     category = models.ForeignKey(CategoryModel, on_delete=models.DO_NOTHING, related_name='post_category')
     food_origin = models.CharField(max_length=100, blank=True, null=True, default=None)
     language = models.ForeignKey(LanguageModel, on_delete=models.CASCADE, related_name='article_language', default=None)
-    header_image = models.ImageField(upload_to='header_images')
+    header_image = OptimizedImageField(upload_to='header_images', optimized_image_output_size=(825, 600),
+                                       optimized_image_resize_method='cover')
     location = models.CharField(max_length=200, default=None)
     slug = models.SlugField(max_length=254, unique=True, allow_unicode=True)
     blog_content = RichTextUploadingField()
@@ -46,8 +49,8 @@ class Article(models.Model):
 
 
 class Like(models.Model):
-    post = models.ForeignKey(Article, related_name='post_name', on_delete=models.DO_NOTHING)
-    author = models.ForeignKey(CustomUser, related_name='liker', on_delete=models.DO_NOTHING)
+    post = models.ForeignKey(Article, related_name='post_name', on_delete=models.CASCADE)
+    author = models.ForeignKey(CustomUser, related_name='liker', on_delete=models.CASCADE)
     liked_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -55,8 +58,8 @@ class Like(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Article, on_delete=models.DO_NOTHING, related_name='comment_on_post')
-    author = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, related_name='commentator')
+    post = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comment_on_post')
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='commentator')
     comment = models.CharField(max_length=256)
     comment_date = models.DateTimeField(auto_now=True)
 
@@ -65,8 +68,8 @@ class Comment(models.Model):
 
 
 class CommentReplyModel(models.Model):
-    post = models.ForeignKey(Article, on_delete=models.DO_NOTHING)
-    author = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING)
+    post = models.ForeignKey(Article, on_delete=models.CASCADE)
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     reply_comment = models.CharField(max_length=256)
     comment_date = models.DateTimeField(auto_now=True)
     base_comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='comment_reply')

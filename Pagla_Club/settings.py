@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%93xfa0(j19wdf47h8lspule^l0t3ur#1^1g8le1wxx8-_8k-e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', 'testserver']
 
 # Application definition
 
@@ -38,10 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'App_SignIn.apps.AppSigninConfig',
     'App_Blog.apps.AppBlogConfig',
+    'App_Admin.apps.AppAdminConfig',
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
+    'image_optimizer',
 ]
+
+# To use Pillow
+OPTIMIZED_IMAGE_METHOD = 'pillow'
 
 # Ckeditor
 CKEDITOR_UPLOAD_PATH = "blog_uploads/"
@@ -137,7 +142,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_URL = 'App_SignIn:login'
+LOGIN_URL = 'App_SignIn:signin'
 
 # Set editor layout
 CKEDITOR_CONFIGS = {

@@ -1,7 +1,18 @@
 {% extends 'Base.html' %}
 {% load static %}
+{% block head %}
+    <meta name="title" content="Foodies Club - Share Foods & Recipes | Category Page">
+    <meta name="description"
+          content="Food travels from country to country.Recipes establish cross-connection among different food cultures.FoodiesKlub lists out recipes, restaurants, food">
+    <meta name="keywords"
+          content="bangladeshi traditional food,traditional bangladeshi food recipes,bangladeshi food list,history of bangladeshi food,traditional food of bangladesh,food culture of bangladesh,national food of bangladesh,what has made bangladesh food so special,29 states famous food name list,famous food of indian states pdf,29 states famous food name list in hindi,traditional food of india,29 states famous food name in hindi,indian states food and clothes,different types of food in india,best food in india state wise,rogan josh,litti,dhokla,mutton curry,thukpa,khichri,vada pav,dal baati,biryani,dal,chole bhature,gulab jamun,indian cuisine,punjabi cuisine,south indian cuisine,cuisine of odisha,tamil cuisine,arunachal cuisine,5 star restaurant,top restaurants,unique restaurant,5 star hotel ,best restaurants,restaurants,Keyword,best buffet restaurant near me,buffet restaurants,cheap buffet restaurant in dhanmondi,buffet restaurant,buffet restaurant in dhanmondi,buffet restaurant in bashundhara,buffet restaurant with price,buffet restaurant in mirpur,">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="revisit-after" content="7 days">
+    <meta name="author" content="Evana Perveen Eva, Maloy Baroi">
+{% endblock %}
 {% block title %}
-    |  Home Page
+    |  Category
 {% endblock %}
 {% block body %}
     <!-- Site Icons -->
@@ -37,300 +48,15 @@
             font-family: 'Josefin Sans', sans-serif !important;
         }
     </style>
+    {% include 'App_Blog/trending-sponsored-skip.html' %}
     <div id="wrapper">
         <section class="section first-section">
-            <div class="container-fluid">
-                <div class="masonry-blog clearfix">
-                    <div class="first-slot">
-                        <div class="masonry-box post-media">
-                            <img src="{% static 'images/promotional/3(1).jpg' %}" alt="promotional"
-                                 class="img-fluid" style="height: 375px !important;">
-                            <div class="shadoweffect">
-                                <div class="shadow-desc">
-                                    <div class="blog-meta">
-                                    </div><!-- end meta -->
-                                </div><!-- end shadow-desc -->
-                            </div><!-- end shadow -->
-                        </div><!-- end post-media -->
-                    </div><!-- end first-side -->
-
-                    <div class="second-slot">
-                        <div class="masonry-box post-media">
-                            <img src="{% static 'images/promotional/1 (1).jpg' %}" alt="promotional"
-                                 class="img-fluid" style="width: 328px; height: 375px;">
-                            <div class="shadoweffect">
-                                <div class="shadow-desc">
-                                    <div class="blog-meta">
-                                    </div><!-- end meta -->
-                                </div><!-- end shadow-desc -->
-                            </div><!-- end shadow -->
-                        </div><!-- end post-media -->
-                    </div><!-- end second-side -->
-
-                    <div class="last-slot">
-                        <div class="masonry-box post-media">
-                            <img src="{% static 'images/promotional/2 (1).jpg' %}" alt="promotional"
-                                 class="img-fluid" style="width: 328px; height: 375px;">
-                            <div class="shadoweffect">
-                                <div class="shadow-desc">
-                                    <div class="blog-meta">
-                                    </div><!-- end meta -->
-                                </div><!-- end shadow-desc -->
-                            </div><!-- end shadow -->
-                        </div><!-- end post-media -->
-                    </div><!-- end second-side -->
-                </div><!-- end masonry -->
-            </div>
+            {% include 'App_Blog/advertisement.html' %}
         </section>
 
-        <section class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9 col-md-12 col-sm-12">
-                        <div class="page-wrapper">
-                            <div class="blog-top clearfix">
-                                <h4 class="pull-left">Recent Post <a href="#"><i class="fa fa-rss"></i></a></h4>
-                            </div><!-- end blog-top -->
-
-                            <div class="blog-list clearfix">
-                                {% for blog, cut_content in blogs %}
-                                    <div class="blog-box row">
-                                        <div class="col-md-4">
-                                            <div class="post-media">
-                                                <a href="#" title="">
-                                                    <img src="{{ blog.header_image.url }}" alt=""
-                                                         class="img-fluid"
-                                                         style="width: 600px!important; height: 280px;!important;">
-                                                    <div class="hovereffect"></div>
-                                                </a>
-                                            </div><!-- end media -->
-                                        </div><!-- end col -->
-
-                                        <div class="blog-meta big-meta col-md-8">
-                                            <h4>
-                                                <a href="{% url 'App_Blog:blog-details' slug=blog.slug %}"
-                                                   title="">{{ blog.blog_title }}</a>
-                                            </h4>
-                                            <p>{{ cut_content|safe|linebreaks }}</p><br>
-                                            <small class="firstsmall"><br><a class="bg-orange" href="#"
-                                                                             title="">{{ blog.category }}</a></small>
-                                            <small><a href="#" title="">21 July, 2017</a></small>
-                                            <small>
-                                                <a href="#" title="">by
-                                                    <b>{{ blog.author.first_name }} {{ blog.author.last_name }}</b>
-                                                </a>
-                                            </small>
-                                            <small><a href="#" title=""><i class="fa fa-eye"></i>
-                                                0</a></small>
-                                        </div><!-- end meta -->
-                                    </div><!-- end blog-box -->
-                                    <hr class="invis">
-                                {% endfor %}
-                            </div><!-- end blog-list -->
-                        </div><!-- end page-wrapper -->
-                    </div>
-
-                    <hr class="invis">
-                    <div class="col-lg-3 col-md-12 col-sm-12">
-                        <div class="sidebar">
-                            <div class="widget">
-                                <div class="banner-spot clearfix">
-                                    <div class="banner-img">
-                                        <img src="{% static 'upload/banner_07.jpg' %}" alt="" class="img-fluid">
-                                    </div><!-- end banner-img -->
-                                </div><!-- end banner -->
-                            </div><!-- end widget -->
-
-                            <div class="widget">
-                                <h2 class="widget-title">Trend Blogs</h2>
-                                <div class="trend-videos">
-                                    {% for trend in trending_video %}
-                                        <div class="blog-box">
-                                            <div class="post-media">
-                                                <a href="" title="">
-                                                    <img src="{{ trend.header_image.url }}" alt=""
-                                                         class="img-fluid">
-                                                    <div class="hovereffect">
-                                                        <span class="videohover"></span>
-                                                    </div><!-- end hover -->
-                                                </a>
-                                            </div><!-- end media -->
-                                            <div class="blog-meta">
-                                                <h4>
-                                                    <a href="{% url 'App_Blog:blog-details' slug=trend.slug %}"
-                                                       title="">
-                                                        {{ trend.blog_title }}
-                                                    </a>
-                                                </h4>
-                                            </div><!-- end meta -->
-                                        </div><!-- end blog-box -->
-
-                                        <hr class="invis">
-                                    {% endfor %}
-
-                                </div><!-- end videos -->
-                            </div><!-- end widget -->
-
-                            <div class="widget">
-                                <h2 class="widget-title">Popular Posts</h2>
-                                <div class="blog-list-widget">
-                                    <div class="list-group">
-                                        {% for sponsored in sponsored_post %}
-                                            <a href="{% url 'App_Blog:blog-details' slug=sponsored.slug %}"
-                                               class="list-group-item list-group-item-action flex-column align-items-start">
-                                                <div class="w-100 justify-content-between">
-                                                    <img src="{{ sponsored.header_image.url }}" alt=""
-                                                         class="img-fluid float-left">
-                                                    <h5 class="mb-1">{{ sponsored.blog_title }}</h5>
-                                                    <small>{{ sponsored.publish_date.date }}</small>
-                                                </div>
-                                            </a>
-                                        {% endfor %}
-
-                                    </div>
-                                </div><!-- end blog-list -->
-                            </div><!-- end widget -->
-
-                            <div class="widget">
-                                <h2 class="widget-title">Categories</h2>
-                                <div class="blog-list-widget">
-                                    <div class="list-group">
-                                        <div class="row">
-                                            {% for cat in category %}
-                                                <a href="{% url 'App_Blog:blogs-by-categories' this_category=cat %}"
-                                                   style="text-align: center; color: #000000; margin: 5px; font-weight: 600;
-                                                   background: linear-gradient(45deg, #ffff00, #1da1f2);">
-                                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                                        {{ cat }}
-                                                    </div>
-                                                </a>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div><!-- end blog-list -->
-                            </div><!-- end widget -->
-
-                            <div class="widget">
-                                <h2 class="widget-title">Follow Us</h2>
-
-                                <div class="row text-center">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                        <a href="#" class="social-button facebook-button">
-                                            <i class="fa fa-facebook"></i>
-                                            <p>27k</p>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                        <a href="#" class="social-button twitter-button">
-                                            <i class="fa fa-twitter"></i>
-                                            <p>98k</p>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                        <a href="#" class="social-button google-button">
-                                            <i class="fa fa-google-plus"></i>
-                                            <p>17k</p>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                        <a href="#" class="social-button youtube-button">
-                                            <i class="fa fa-youtube"></i>
-                                            <p>22k</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div><!-- end widget -->
-
-                            <div class="widget">
-                                <div class="banner-spot clearfix">
-                                    <div class="banner-img">
-                                        <img src="{% static 'upload/banner_03.jpg' %}" alt="" class="img-fluid">
-                                    </div><!-- end banner-img -->
-                                </div><!-- end banner -->
-                            </div><!-- end widget -->
-                        </div><!-- end sidebar -->
-                    </div><!-- end col -->
-                </div><!-- end row -->
-            </div><!-- end container -->
+        <section class="section" id="Post-starts">
+            {% include 'App_Blog/blog_container.html' %}
         </section>
-
-        <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <div class="widget">
-                            <div class="footer-text text-left">
-                                <a href="index.html"><img src="images/version/tech-footer-logo.png" alt=""
-                                                          class="img-fluid"></a>
-                                <p>Tech Blog is a technology blog, we sharing marketing, news and gadget articles.</p>
-                                <div class="social">
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i
-                                            class="fa fa-facebook"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i
-                                            class="fa fa-twitter"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Instagram"><i
-                                            class="fa fa-instagram"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Google Plus"><i
-                                            class="fa fa-google-plus"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i
-                                            class="fa fa-pinterest"></i></a>
-                                </div>
-
-                                <hr class="invis">
-
-                                <div class="newsletter-widget text-left">
-                                    <form class="form-inline">
-                                        <input type="text" class="form-control" placeholder="Enter your email address">
-                                        <button type="submit" class="btn btn-primary">SUBMIT</button>
-                                    </form>
-                                </div><!-- end newsletter -->
-                            </div><!-- end footer-text -->
-                        </div><!-- end widget -->
-                    </div><!-- end col -->
-
-                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                        <div class="widget">
-                            <h2 class="widget-title">Popular Categories</h2>
-                            <div class="link-widget">
-                                <ul>
-                                    <li><a href="#">Marketing <span>(21)</span></a></li>
-                                    <li><a href="#">SEO Service <span>(15)</span></a></li>
-                                    <li><a href="#">Digital Agency <span>(31)</span></a></li>
-                                    <li><a href="#">Make Money <span>(22)</span></a></li>
-                                    <li><a href="#">Blogging <span>(66)</span></a></li>
-                                </ul>
-                            </div><!-- end link-widget -->
-                        </div><!-- end widget -->
-                    </div><!-- end col -->
-
-                    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                        <div class="widget">
-                            <h2 class="widget-title">Copyrights</h2>
-                            <div class="link-widget">
-                                <ul>
-                                    <li><a href="#">About us</a></li>
-                                    <li><a href="#">Advertising</a></li>
-                                    <li><a href="#">Write for us</a></li>
-                                    <li><a href="#">Trademark</a></li>
-                                    <li><a href="#">License & Help</a></li>
-                                </ul>
-                            </div><!-- end link-widget -->
-                        </div><!-- end widget -->
-                    </div><!-- end col -->
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <br>
-                        <div class="copyright">&copy; Tech Blog. Design: <a href="http://html.design">HTML Design</a>.
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end container -->
-        </footer><!-- end footer -->
 
         <div class="dmtop">Scroll to Top</div>
 

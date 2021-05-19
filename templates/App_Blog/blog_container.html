@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+            <div class="page-wrapper">
+                {% include 'App_Blog/filter.html' %}
+                <!-------- End Modal --------->
+                <div class="blog-list clearfix">
+                    {% for blog, cut_content in blogs %}
+                        <div class="blog-box row" style="background-color: #ffefcc; padding: 20px">
+                            <div class="col-md-4">
+                                <div class="post-media">
+                                    <a href="{% url 'App_Blog:blog-details' slug=blog.slug %}" title="">
+                                        <img src="{{ blog.header_image.url }}" alt="Main photo"
+                                             class="img-fluid"
+                                             style="width: 600px!important; height: 280px;!important;">
+                                        <div class="hovereffect"></div>
+                                    </a>
+                                </div><!-- end media -->
+                            </div><!-- end col -->
+
+                            <div class="blog-meta big-meta col-md-8">
+                                <h4>
+                                    <a href="{% url 'App_Blog:blog-details' slug=blog.slug %}"
+                                       title="Slug">{{ blog.blog_title }}</a>
+                                </h4>
+                                <p>{{ cut_content|safe|linebreaks }}</p><br>
+                                <small class="firstsmall"><br>
+                                    <a class="bg-orange btn"
+                                       href="{% url 'App_Blog:blogs-by-categories' this_category=blog.category %}"
+                                       title="">{{ blog.category }}</a>
+                                </small><br>
+                                <small><a href="#" title="">{{ blog.publish_date }}</a></small>
+                                <small>
+                                    <a href="#" title="">by
+                                        <b>{{ blog.author.first_name }} {{ blog.author.last_name }}</b>
+                                    </a>
+                                </small>
+                                <small>
+                                    <a href="#" title=""><i class="fa fa-eye"></i>
+                                        {{ blog.post_view }}
+                                    </a>
+                                </small>
+                                <hr>
+                            </div><!-- end meta -->
+                        </div><!-- end blog-box -->
+                        <hr class="invis">
+                    {% endfor %}
+                </div><!-- end blog-list -->
+            </div><!-- end page-wrapper -->
+        </div>
+        <hr class="invis">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+            {% include 'App_Blog/sidebar.html' %}
+        </div><!-- end col -->
+    </div><!-- end row -->
+</div><!-- end container -->

@@ -80,7 +80,7 @@
                         </div><!-- end title -->
 
                         <div class="single-post-media text-center">
-                            <img src="{{ blog.header_image.url }}" alt="" class="img-fluid" style="height: 500px;">
+                            <img src="{{ blog.header_image.url }}" alt="" class="img-fluid" style="height: auto;">
                             <a href="https://cutt.ly/kbY2ZVw" target="_blank">
                                 <img src="{% static 'images/pin.png' %}" style="width: 20px; height: 20px">
                                 : {{ blog.location }}
@@ -319,94 +319,7 @@
                 </div><!-- end col -->
 
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                    <div class="sidebar">
-                        <div class="widget">
-                            <div class="banner-spot clearfix">
-                                <div class="banner-img" style="width: 255px; height: 290px;">
-                                </div><!-- end banner-img -->
-                            </div><!-- end banner -->
-                        </div><!-- end widget -->
-
-                        <div class="widget">
-                            <h2 class="widget-title">Trend Blogs</h2>
-                            <div class="trend-videos">
-                                {% for trend in trending_post %}
-                                    <div class="blog-box">
-                                        <div class="post-media">
-                                            <a href="#" title="">
-                                                <img src="{{ trend.header_image.url }}" alt="image"
-                                                     class="img-fluid" style="height: 146px; width: 255px;">
-                                                <div class="hovereffect">
-                                                    <span class="videohover"></span>
-                                                </div><!-- end hover -->
-                                            </a>
-                                        </div><!-- end media -->
-                                        <div class="blog-meta">
-                                            <h4>
-                                                <a href="{% url 'App_Blog:blog-details' slug=trend.slug %}" title="">
-                                                    {{ trend.blog_title }}
-                                                </a>
-                                            </h4>
-                                        </div><!-- end meta -->
-                                    </div><!-- end blog-box -->
-                                    <hr class="invis">
-                                {% endfor %}
-                            </div><!-- end videos -->
-                        </div><!-- end widget -->
-
-                        <div class="widget">
-                            <h2 class="widget-title">Popular Posts</h2>
-                            <div class="blog-list-widget">
-                                <div class="list-group">
-                                    {% for sponsored in sponsored_post %}
-                                        <a href="{% url 'App_Blog:blog-details' slug=sponsored.slug %}"
-                                           class="list-group-item list-group-item-action flex-column align-items-start">
-                                            <div class="w-100 justify-content-between">
-                                                <img src="{{ sponsored.header_image.url }}" alt=""
-                                                     class="img-fluid float-left">
-                                                <h5 class="mb-1">{{ sponsored.blog_title }}</h5>
-                                                <small>{{ sponsored.publish_date.date }}</small>
-                                            </div>
-                                        </a>
-                                    {% endfor %}
-                                </div>
-                            </div><!-- end blog-list -->
-                        </div><!-- end widget -->
-
-                        <div class="widget">
-                            <h2 class="widget-title">Follow Us</h2>
-                            <div class="row text-center">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6" style="margin-bottom: 5px;">
-                                    <a href="https://www.facebook.com/" target="_blank">
-                                        <img src="{% static 'images/Follow_us_facebook.png' %}" alt="Facebook"
-                                             class="follow_us_icons" id="febu">
-                                    </a>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6" style="margin-bottom: 5px;">
-                                    <a href="https://www.instagram.com/" target="_blank">
-                                        <img src="{% static 'images/Follow_us_instagram.png' %}" alt="Facebook"
-                                             class="follow_us_icons" id="insu">
-                                    </a>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6" style="margin-bottom: 5px;">
-                                    <a href="https://www.linkedin.com" target="_blank">
-                                        <img src="{% static 'images/Follow_us_linkedin.png' %}" alt="Facebook"
-                                             class="follow_us_icons" id="linku">
-                                    </a>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-
-                                </div>
-                            </div>
-                        </div><!-- end widget -->
-
-                        <div class="widget">
-                            <div class="banner-spot clearfix">
-                                <div class="banner-img" style="width: 255px; height: 490px;">
-                                </div><!-- end banner-img -->
-                            </div><!-- end banner -->
-                        </div><!-- end widget -->
-                    </div><!-- end sidebar -->
+                    {% include 'App_Blog/sidebar.html' %}
                 </div><!-- end col -->
             </div><!-- end row -->
         </div><!-- end container -->

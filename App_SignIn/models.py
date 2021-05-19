@@ -4,13 +4,16 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
+from image_optimizer.fields import OptimizedImageField
+
 phone_regex = RegexValidator(regex=r"^\+?(88)01[3-9][0-9]{8}$", message=_('Enter Bangladeshi Number with country code'))
 
 
 class CustomUser(AbstractUser):
     phone_number = models.CharField(validators=[phone_regex], max_length=20, verbose_name=_("Mobile Number"))
     Address = models.CharField(max_length=100)
-    photo = models.ImageField(upload_to='user_photo')
+    photo = OptimizedImageField(upload_to='user_photo', optimized_image_output_size=(400, 300),
+                                optimized_image_resize_method='cover')
 
 
 class Moderator(models.Model):

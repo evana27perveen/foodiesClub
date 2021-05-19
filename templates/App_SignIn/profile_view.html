@@ -6,6 +6,12 @@
 {% endblock %}
 {% block body %}
     <style>
+
+        .card img {
+            height: 320px;
+            width: 100%;
+        }
+
         .breadcrumb {
             background-color: #E9ECEF;
             border-radius: 5px;
@@ -92,6 +98,39 @@
             width: 100%;
             height: 200px;
         }
+
+        #view_btn {
+            background: #0b9aac !important;
+            color: #ffffff !important;
+        }
+
+        #edit_btn {
+            background: rgba(132, 93, 0, 0.89) !important;
+            color: #ffffff !important;
+        }
+
+        #delete_btn {
+            background: #ff3838 !important;
+            color: #ffffff !important;
+        }
+
+        .modal #article-container {
+            text-align: left !important;
+        }
+
+        .modal #article-container img{
+            height: auto !important;
+            width: 60% !important;
+            transition: width 1s, height 1s;
+            border-radius: 5px;
+        }
+
+        .modal #article-container img:hover {
+            height: auto !important;
+            width: 660px !important;
+            transition: width 1s, height 1s;
+            border-radius: 5px;
+        }
     </style>
     <div class="container profile-div">
         <ol class="breadcrumb hidden-xs-down">
@@ -130,20 +169,76 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+
+        {% endif %}
+    </div>
     <div class="container" id="article-container">
-        <div class="row">
-            {% for article in articles %}
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="{{ article.header_image.url }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ article.blog_title }}</h5>
-                            <a href="{% url 'App_Blog:blog-details' slug=article.slug %}" class="btn btn-primary">View</a>
+            <div class="row">
+                {% for article in articles %}
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="card">
+                            <img src="{{ article.header_image.url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ article.blog_title }}</h5>
+                                <p> Status:
+                                    {% if article.approval %}
+                                        <small class="text-success">Approved</small>
+                                    {% else %}
+                                        <small class="text-danger">Pending</small>
+                                    {% endif %}
+                                </p>
+                                <div style="text-align: center;">
+                                    <a href="{% url 'App_Blog:blog-details' slug=article.slug %}" class="btn"
+                                       id="view_btn" data-toggle="modal" data-target="#exampleModal{{ article.id }}">
+                                        View
+                                    </a> &nbsp; &nbsp;
+                                    <a href="{% url 'App_Blog:blog-update' slug=article.slug %}" class="btn"
+                                       id="edit_btn">
+                                        Edit
+                                    </a> &nbsp; &nbsp;
+                                    <a href="{% url 'App_Blog:delete-blog' slug=article.slug %}" class="btn"
+                                       id="delete_btn">
+                                        Delete
+                                    </a>
+                                    <!----- Modal ----->
+                                    <div class="modal fade" id="exampleModal{{ article.id }}" tabindex="-1"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"
+                                                        id="exampleModalLabel">{{ article.blog_title }}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <img src="{{ article.header_image.url }}" alt="Header Image"
+                                                         style="width: 70%; height: auto">
+                                                    <div id="article-container">
+                                                        {{ article.blog_content|safe|linebreaks }}
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
     </div>
 {% endblock %}
 

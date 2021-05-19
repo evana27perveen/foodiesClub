@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from App_Blog.models import Article
+from App_Blog.models import Article, LanguageModel
 from App_SignIn.models import CustomUser
 from App_SignIn.forms import *
 
@@ -33,7 +33,7 @@ def signup_system(request):
                 group = Group.objects.get_or_create(name="Writer")
                 group[0].user_set.add(this_user)
             this_writer.save()
-            return HttpResponseRedirect(reverse('App_Blog:home'))
+            return HttpResponseRedirect(reverse('App_SignIn:signin'))  # After signup it will redirect to login page
     return render(request, 'App_SignIn/signup.html', context={'form1': form_user, 'form2': form_writer})
 
 
@@ -66,6 +66,7 @@ def signout_system(request):
 
 
 def contact_us_view(request):
+    languages = LanguageModel.objects.all()
     form = ContactForm()
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -76,19 +77,21 @@ def contact_us_view(request):
             this_form.save()
             messages.success(request, "Your opinion is very important to us. We will reply you soon.")
             return HttpResponseRedirect(reverse('App_SignIn:contact-us'))
-    content = {'form': form}
+    content = {'form': form, 'languages': languages}
     return render(request, 'App_SignIn/contact.html', context=content)
 
 
 @login_required
 def profile_view(request):
+    languages = LanguageModel.objects.all()
     writer = Writer.objects.all().get(user=request.user)
     articles = Article.objects.filter(author=request.user)
-    content = {'articles': articles, 'facebook': writer.facebook, 'linkedIn': writer.linked_in}
+    content = {'articles': articles, 'facebook': writer.facebook, 'linkedIn': writer.linked_in, 'languages': languages}
     return render(request, 'App_SignIn/profile_view.html', context=content)
 
 
 def update_profile(request):
+    languages = LanguageModel.objects.all()
     form1 = UserUpdateForm(instance=request.user)
     writer = Writer.objects.get(user=request.user)
     form2 = WriterForm(instance=writer)
@@ -101,16 +104,16 @@ def update_profile(request):
             this_writer.user = this_user
             this_writer.save()
             return HttpResponseRedirect(reverse('App_SignIn:profile-view'))
-    content = {'form1': form1, 'form2': form2}
+    content = {'form1': form1, 'form2': form2, 'languages': languages}
     return render(request, 'App_SignIn/profile_update.html', context=content)
 
 
 def password_change(request):
+    languages = LanguageModel.objects.all()
     form = PasswordChangeForm(request.user)
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, data=request.POST)
         if form.is_valid():
             form.save(commit=True)
             return HttpResponseRedirect(reverse('App_SignIn:profile-view'))
-    return render(request, 'App_SignIn/password_change.html', context={'form': form})
-
+    return render(request, 'App_SignIn/password_change.html', context={'form': form, 'languages': languages})

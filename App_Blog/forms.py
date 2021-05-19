@@ -34,5 +34,5 @@ class CommentReplyForm(forms.ModelForm):
 class UpdateForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ['category', 'header_image', 'blog_content']
+        fields = ['category', 'food_origin', 'language', 'header_image', 'location', 'blog_content']
 
